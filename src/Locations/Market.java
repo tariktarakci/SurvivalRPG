@@ -18,9 +18,9 @@ public class Market extends NormalLoc{
 
         Game.location=this.name;
         System.out.println("Kese: "+player.getMoney());
-        System.out.println("1. Silahlar");
-        System.out.println("2. Zirhlar");
-        System.out.println("3. Cikis");
+        System.out.println("1. Weaponary");
+        System.out.println("2. Armors");
+        System.out.println("3. Exit");
         int selTool = sc.nextInt();
         int selItemID;
         int selArmID;
@@ -39,10 +39,10 @@ public class Market extends NormalLoc{
     }
 
     private int armorMenu() {                                                          // birim engelleme başı fiyat
-        System.out.println("1. Hafif zirh  ==>    Hasar engelleme: 2      Fiyat: 15"); // 7.5
-        System.out.println("2. Orta zirh   ==>    Hasar engelleme: 4      Fiyat: 25"); // 6.25
-        System.out.println("3. Agir zirh   ==>    Hasar engelleme: 7      Fiyat: 40"); // 5.7
-        System.out.println("4. Marketteki diger esyalara bak");
+        System.out.println("1. Light Armor  ==>    Blocking: 2      Price: 15"); // 7.5
+        System.out.println("2. Mediocre Armor   ==>    Blocking: 4      Price: 25"); // 6.25
+        System.out.println("3. Heavy Armor   ==>    Blocking: 7      Price: 40"); // 5.7
+        System.out.println("4. Look other items");
         int selArmID = sc.nextInt();
         return selArmID;
     }
@@ -52,35 +52,35 @@ public class Market extends NormalLoc{
                 if (player.getMoney()>=15){
                     player.setMaxHealth(player.getMaxHealth()+2);
                     player.setCurrentHealth(player.getCurrentHealth()+2);
-                    player.getInv().armors.add("Hafif zirh");
+                    player.getInv().armors.add("Light Armor");
                     player.setMoney(player.getMoney()-15);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Hafif zirh envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Light Armor was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
 
                 break;
             case 2:
                 if (player.getMoney()>=25){
                     player.setMaxHealth(player.getMaxHealth()+4);
                     player.setCurrentHealth(player.getCurrentHealth()+4);
-                    player.getInv().armors.add("Orta zirh");
+                    player.getInv().armors.add("Mediocre Armor");
                     player.setMoney(player.getMoney()-25);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Orta zirh envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Mediocre Armor was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
                 break;
             case 3:
                 if (player.getMoney()>=40){
                     player.setMaxHealth(player.getMaxHealth()+8);
                     player.setCurrentHealth(player.getCurrentHealth()+8);
-                    player.getInv().armors.add("Agir zirh");
+                    player.getInv().armors.add("Heavy Armor");
                     player.setMoney(player.getMoney()-40);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Agir zirh envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Heavy Armor was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
                 break;
             default:
                 getLocation();
@@ -89,10 +89,10 @@ public class Market extends NormalLoc{
 
 
     private int weaponMenu() {
-        System.out.println("1. Tabanca  ==>    Hasar: +2      Fiyat: 25");
-        System.out.println("2. Kilic    ==>    Hasar: +3      Fiyat: 35");
-        System.out.println("3. Tufek    ==>    Hasar: +7      Fiyat: 45");
-        System.out.println("4. Marketteki diger esyalara bak");
+        System.out.println("1. Dagger  ==>    Damage: +2      Price: 25");
+        System.out.println("2. Battle Axe    ==>    Damage: +3      Price: 35");
+        System.out.println("3. Lance    ==>    Damage: +7      Price: 45");
+        System.out.println("4. Look other items");
         int selWepo = sc.nextInt();
         return selWepo;
     }
@@ -102,33 +102,33 @@ public class Market extends NormalLoc{
             case 1:
                 if (player.getMoney()>=25){
                     player.setDamage(player.getDamage()+2);
-                    player.getInv().weapons.add("Tabanca");
+                    player.getInv().weapons.add("Dagger");
                     player.setMoney(player.getMoney()-25);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Tabanca envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Dagger was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
                 break;
             case 2:
                 if (player.getMoney()>=35){
                     player.setDamage(player.getDamage()+3);
-                    player.getInv().weapons.add("Kilic");
+                    player.getInv().weapons.add("Battle Axe");
                     player.setMoney(player.getMoney()-35);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Kilic envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Battle Axe was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
 
                 break;
             case 3:
                 if (player.getMoney()>=45){
                     player.setDamage(player.getDamage()+7);
-                    player.getInv().weapons.add("Tufek");
+                    player.getInv().weapons.add("Lance");
                     player.setMoney(player.getMoney()-45);
-                    System.out.println("Kese: "+player.getMoney());
-                    System.out.println("Tufek envanterine eklendi");
+                    System.out.println("Pouch: "+player.getMoney());
+                    System.out.println("Lance was added to the inventory");
                 }else
-                    System.out.println("Paran yetersiz");
+                    System.out.println("You don't have enough gold");
 
                 break;
             default:

@@ -25,12 +25,16 @@ public abstract class BattleLoc extends Location{
         Game.location =this.name;
         int obsCount = obstacle.count(); // obsCount: oyuncunun karşısına çıkan canavar sayısı
         Game.location = this.name;
-        System.out.println(obsCount+" tane "+obstacle.getName()+" gorunuyor");
-        System.out.println("1. Yakinlarina git\n2. Uzaklas");
+        System.out.println(obsCount+" "+obstacle.getName()+" appaered");
+        System.out.println("1. Go near\n2. Walk away");
         int selCase = sc.nextInt();
         if (selCase==1){
             if (combat(obsCount)){
-                System.out.println(this.name+" bolgesindeki "+obsCount+" tane "+obstacle.getName()+" olduruldu");
+                if (obsCount==1) {
+                    System.out.println(obsCount + " " + obstacle.getName() + " is killed at " + this.name);
+                }else{
+                    System.out.println(obsCount + " " + obstacle.getName() + "s are killed at " + this.name);
+                }
                 //award, health
             }
         }
@@ -41,10 +45,10 @@ public abstract class BattleLoc extends Location{
         Game.ctrl=0;
         for (int i = 0; i <obsCount ; i++) {
             while (player.getCurrentHealth()>0 && obstacle.getHealth()>0){
-                System.out.println(obstacle.getName()+"\nHasari:"+ obstacle.getDamage()+"\nCani:"+obstacle.getHealth()+"\n");
-                System.out.println(player.getPlayerName()+"\nHasarin: "+player.getDamage()+"\nCanin: "
+                System.out.println(obstacle.getName()+"\nAttack Damage:"+ obstacle.getDamage()+"\nIt's Health:"+obstacle.getHealth()+"\n");
+                System.out.println(player.getPlayerName()+"\nYour Attack Damage: "+player.getDamage()+"\nYour Health: "
                                   +player.getCurrentHealth()+"/"+player.getMaxHealth()+"\n");
-                System.out.println("1. Saldir\n2.Geri cekil");
+                System.out.println("1. Attack\n2. Back off");
                 int didAttack=sc.nextInt();
                 if (didAttack==1){
                     obstacle.setHealth(obstacle.getHealth()-player.getDamage());
@@ -58,20 +62,20 @@ public abstract class BattleLoc extends Location{
             if (obstacle.getHealth()<=0 && player.getCurrentHealth()>0 ){
                 if (obstacle.getName().equals("Zombie")){
                     player.setMoney(player.getMoney()+4);
-                    System.out.println("4 altin kazandin");
+                    System.out.println("You gain 4 gold");
                     player.setExp(player.getExp()+1);
                     obstacle = new Zombie();
                 } else if (obstacle.getName().equals("Bear")) {
                     player.setMoney(player.getMoney()+12);
-                    System.out.println("12 altin kazandin");
+                    System.out.println("You gain 12 gold");
                     player.setExp(player.getExp()+1);
                     obstacle = new Bear();
                 } else if (obstacle.getName().equals("Vampire")) {
                     player.setMoney(player.getMoney()+7);
-                    System.out.println("7 altin kazandin");
+                    System.out.println("You gain 7 gold");
                     player.setExp(player.getExp()+1);
                     obstacle = new Vampire();
-                }else System.out.println("OBSTACLE URETME HATASI!!!");
+                }else System.out.println("OBSTACLE GENERATING EXCEPTION!!!(BattleLoc.78)");
             } else {
                 break;
             }

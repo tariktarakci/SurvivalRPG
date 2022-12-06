@@ -23,15 +23,15 @@ public class Player {
                 initPlayer("Samurai",5,21,15);
                 break;
             case 2:
-                initPlayer("Okcu",8,16,20); // daha sonra düzenlenecek i2:20
+                initPlayer("Archer",8,16,20);
                 break;
             case 3:
-                initPlayer("Sovalye",7,24,5);
+                initPlayer("Knight",7,24,5);
 
                 break;
             default:
-                System.out.println("lUTFEN KARAKTER SECMEK ICIN 1-2-3 SAYILARINDAN BIRINI GIRIN");
-                chaMenu();
+                System.out.println("Please enter a valid number (1-2-3)");
+                selectCha();
         }
     }
 
@@ -45,10 +45,10 @@ public class Player {
     }
 
     public int chaMenu(){
-        System.out.println("Lutfen bir karakter tipi secin (1,2,3)");
-        System.out.println("1. Samurai\n    Hasar: 5\n    Saglik: 21\n    Para: 15 ");
-        System.out.println("2. Okcu\n    Hasar: 7\n    Saglik: 18\n    Para: 20 ");
-        System.out.println("3. Sovalye\n    Hasar: 8\n    Saglik: 24\n    Para: 5 ");
+        System.out.println("Choose your class (1,2,3)");
+        System.out.println("1. Samurai\n    Attack Damage: 5\n    Health: 21\n    Money: 15 ");
+        System.out.println("2. Archer\n    Attack Damage: 7\n    Health: 18\n    Money: 20 ");
+        System.out.println("3. Knight\n    Attack Damage: 8\n    Health: 24\n    Money: 5 ");
         int uyhguı=sc.nextInt();
         return uyhguı;
     }

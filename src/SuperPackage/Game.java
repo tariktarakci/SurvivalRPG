@@ -10,15 +10,16 @@ public class Game {
 
     Location loc ;
     public static String location ="Safe House";
-    public static int ctrl=0;
-    String[] locs={"Safe House","Cave","Forest","River","Market"};
+    public static int ctrl=0;   // Bu variable player'ın eve üst üste gitmesi veya bekleyerek canını yenileyememesi için kontrol amaçlı konulmuştur
+                                // Eve girildiğinde ctrl arttırılır eğer battleloc'a girilirse tekrar 0 olur.
+    String[] locs={"Safe House","Cave","Forest","River","Market"};  // Location la ilgili şeyler Location class'ı kullanılarak halledilmeli
+                                                                    // bu şekilde array üzerinde çalışmak saçma
 
-    int ilkSefer=0;
 
     public void login() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\nMacera oyununa hosgeldiniz");
-        System.out.println("Oyuna baslamadan once isminizi giriniz");
+        System.out.println("\n\nWelcome to the Island");
+        System.out.println("Please enter your name before struggle");
         String playerName = sc.nextLine();
         player = new Player(playerName);
         player.selectCha();
@@ -28,17 +29,17 @@ public class Game {
 
     public void start(){
 
-        System.out.print("\n========================SU, ODUN VE YIYECEK BULAMAZSA==========================\n");
+        System.out.print("\n========================WATER, WOOD AND FOOD==========================\n");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
-        System.out.print("============================EN GUCLU SAVASCI BILE==============================\n");
+        System.out.print("============================EVEN THE STRONGEST ONE==============================\n");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
-        System.out.print("================================HAYATTA KALAMAZ================================\n");
+        System.out.print("================================CAN NOT LIVE WITHOUT THEM========================\n");
         System.out.println();
         try {
             Thread.sleep(1000);
@@ -50,18 +51,18 @@ public class Game {
     }
 
     public void goWhere(){
-        if (player.getCurrentHealth()>0) {  // eğer karakter hayattaysa
+        if (player.getCurrentHealth()>0) {  // If character is alive
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("Su anda " + location + " konumundasin");
-            System.out.println("1. Git\n2. Bekle");
+            System.out.println("You are at " + location);
+            System.out.println("1. Go\n2. Wait");
             int fxc = sc.nextInt();
 
             switch (fxc) {
                 case 1:
                     for (int i = 0; i < locs.length ; i++) {
                         if (!(locs[i].equals(location)))
-                            System.out.println((i+1) + ". " + locs[i] + " konumuna git");
+                            System.out.println((i+1) + ". Go to " + locs[i]);
                     }
                     int plagtym = sc.nextInt();
                     locChoosen(plagtym);  // seçilen konumu locChoosen methoduna gönderir
@@ -74,7 +75,7 @@ public class Game {
                     }
                     break;
                 default:
-                    System.out.println("LUTFEN GECERLİ BİR SAYİ GİRİN (1,2)");
+                    System.out.println("Please enter a valid number (1,2)");
                     goWhere();
             }
         } else  // eğer karakter hayatta değilse
@@ -104,7 +105,7 @@ public class Game {
                 loc = new Market(player);
                 break;
             default:
-                System.out.println("LOKASYON HATASI");
+                System.out.println("LOCATİON ERROR (Game.108)");
         }
         loc.getLocation();
         goWhere();

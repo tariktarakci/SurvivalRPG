@@ -7,8 +7,7 @@ import java.util.Scanner;
 public abstract class NormalLoc extends Location{
 
     NormalLoc(Player player,String name) {
-        super(player);
-        this.name=name;
+        super(player,name);
     }
 
     public boolean getLocation(){
